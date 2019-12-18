@@ -15,3 +15,65 @@
           </ul>
       </details>
 
+### **2019/12/17**⌚️
+
+- PHP如何操作数据库增加数据表中的数据？
+
+  <details >
+        <summary>点击</summary>
+        <ul>
+            <li>首先需要创建mysql命令的字符串：$str = 'INSERT stu (user,sex,age) VALUES("小二","男",20)';</li>
+            <li>字符串的格式务必要注意，VALUES后的字符必须加“”，哪怕是用$u变量去拼接，也需要用""把变量包裹才可以</li>
+            <li>$q = $link->query($str);发送mysql语句，执行对应的操作</li>
+        </ul>
+    </details>
+
+### **2019/12/18**⌚️
+
+- 如何实现JSONP
+
+  <details >
+        <summary>点击</summary>
+        <ul>
+            <li>分为JS和PHP</li>
+            <li>var url = "http://localhost/myown/jsonp/jsonp2.php";
+  document.onclick = function () {
+      jsonp(url, (res) => {
+          console.log(res);
+      }, {
+          cb: "qwe",
+          cbname: "cb",
+          user: "root",
+          pass: "root"
+      })
+  }
+
+  function jsonp(url, callback, obj) {
+      var str = "";
+      var script = document.createElement("script");
+      for (var i in obj) {
+          str += `${i}=${obj[i]}&`;
+      }
+      url = url + "?" + str + "__retr0__=" + new Date().getTime();
+      script.src = url;
+      document.body.appendChild(script);
+      window[obj[obj.cbname]] = function (res) {
+              callback(res);
+      }
+      script.remove();
+  }</li>
+
+  ​          <li><?php
+  $u = $_GET["user"];
+  $p = $_GET["pass"];
+  $cb = $_GET["cb"];
+  $data = "这是JSONP接受到的数据" . $u . "------" . $p;
+  echo "$cb('" . $data . "')";
+  ?></li>
+        </ul>
+    </details>
+
+
+```
+
+```
