@@ -34,9 +34,11 @@
 
   <details >
         <summary>点击</summary>
-        <ul>
-            <li>分为JS和PHP</li>
-            <li>var url = "http://localhost/myown/jsonp/jsonp2.php";
+
+  #### JS代码
+
+  ```js
+  var url = "http://localhost/myown/jsonp/jsonp2.php";
   document.onclick = function () {
       jsonp(url, (res) => {
           console.log(res);
@@ -47,7 +49,7 @@
           pass: "root"
       })
   }
-
+  
   function jsonp(url, callback, obj) {
       var str = "";
       var script = document.createElement("script");
@@ -61,19 +63,22 @@
               callback(res);
       }
       script.remove();
-  }</li>
+  }
+  ```
 
-  ​          <li><?php
+  #### PHP代码
+
+  ```php
+  <?php
   $u = $_GET["user"];
   $p = $_GET["pass"];
   $cb = $_GET["cb"];
   $data = "这是JSONP接受到的数据" . $u . "------" . $p;
   echo "$cb('" . $data . "')";
-  ?></li>
-        </ul>
+  ?>
+  ```
+
+  
+
     </details>
 
-
-```
-
-```
