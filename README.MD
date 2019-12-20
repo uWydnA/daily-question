@@ -82,40 +82,38 @@
 
     </details>
 
-  
+### **2019/12/19**⌚️
 
-- ### **2019/12/19**⌚️
+- mysql如何对数据进行增删改查
 
-  - mysql如何对数据进行增删改查
+<details >
+<summary>点击</summary>
+<ul>
+<li>INSERT 表名(字段名1，字段名2) VALUES(val1,val2)</li>
+<li>DELETE FROM 表名 WHERE 主键 = val </li>
+<li>UPDATE 表名 SET 字段1 WHERE 主键 = val</li>
+<li>SELECT * FROM 表名</li>      
 
-    <details >
-          <summary>点击</summary>
-          <ul>
-              <li>INSERT 表名(字段名1，字段名2) VALUES(val1,val2)</li>
-              <li>DELETE FROM 表名 WHERE 主键 = val </li>
-              <li>UPDATE 表名 SET 字段1 WHERE 主键 = val</li>
-      	   <li>SELECT * FROM 表名</li>      
-
-    </ul>
-      </details>
+</ul>
+</details>
 
   
 
-- ### **2019/12/20**⌚️
+### **2019/12/20**⌚️
 
-  - cookies中的expires的作用
+- cookies中的expires的作用
 
-    <details >
-          <summary>点击</summary>
-          <ul>
-              <li>指定了cookie的生存期，默认情况下cookie是暂时存在的，他们存储的值只在浏览器会话期间存在，当用户退出浏览器后这些值也会丢失，如果想让cookie存在一段时间，就要为expires属性设置为未来的一个用毫秒数表示的过期日期或时间点，expires默认为设置的expires的当前时间。现在已经被max-age属性所取代，max-age用秒来设置cookie的生存期。</li>
-              <li>如果max-age属性为正数，则表示该cookie会在max-age秒之后自动失效。浏览器会将max-age为正数的cookie持久化，即写到对应的cookie文件中。无论客户关闭了浏览器还是电脑，只要还在max-age秒之前，登录网站时该cookie仍然有效。</li>
-              <li>如果max-age为负数，则表示该cookie仅在本浏览器窗口以及本窗口打开的子窗口内有效，关闭窗口后该cookie即失效。max-age为负数的Cookie，为临时性cookie，不会被持久化，不会被写到cookie文件中。cookie信息保存在浏览器内存中，因此关闭浏览器该cookie就消失了。cookie默认的max-age值为-1。</li>
+<details >
+<summary>点击</summary>
+<ul>
+<li>指定了cookie的生存期，默认情况下cookie是暂时存在的，他们存储的值只在浏览器会话期间存在，当用户退出浏览器后这些值也会丢失，如果想让cookie存在一段时间，就要为expires属性设置为未来的一个用毫秒数表示的过期日期或时间点，expires默认为设置的expires的当前时间。现在已经被max-age属性所取代，max-age用秒来设置cookie的生存期。</li>
+<li>如果max-age属性为正数，则表示该cookie会在max-age秒之后自动失效。浏览器会将max-age为正数的cookie持久化，即写到对应的cookie文件中。无论客户关闭了浏览器还是电脑，只要还在max-age秒之前，登录网站时该cookie仍然有效。</li>
+<li>如果max-age为负数，则表示该cookie仅在本浏览器窗口以及本窗口打开的子窗口内有效，关闭窗口后该cookie即失效。max-age为负数的Cookie，为临时性cookie，不会被持久化，不会被写到cookie文件中。cookie信息保存在浏览器内存中，因此关闭浏览器该cookie就消失了。cookie默认的max-age值为-1。</li>
 
-    <li>	如果max-age为0，则表示删除该cookie。cookie机制没有提供删除cookie的方法，因此通过设置该cookie即时失效实现删除cookie的效果。失效的Cookie会被浏览器从cookie文件或者内存中删除。
+<li>	如果max-age为0，则表示删除该cookie。cookie机制没有提供删除cookie的方法，因此通过设置该cookie即时失效实现删除cookie的效果。失效的Cookie会被浏览器从cookie文件或者内存中删除。
 
-    如果不设置expires或者max-age这个cookie默认是Session的，也就是关闭浏览器该cookie就消失了。</li>
+如果不设置expires或者max-age这个cookie默认是Session的，也就是关闭浏览器该cookie就消失了。</li>
 
-    ​      </ul>
-      </details>
+​      </ul>
+</details>
 
