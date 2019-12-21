@@ -117,3 +117,22 @@
 ​      </ul>
 </details>
 
+
+
+### **2019/12/21**⌚️
+
+- mysql如何取消主键的设置
+
+<details >
+<summary>点击</summary>
+<ul>
+<li>alter table class drop primary key;</li>
+<li>alter table class modify id int(11),drop primary key;//将class表中的id 重置为普通列 </li>
+<li>UPDATE 表名 SET 字段1 WHERE 主键 = val</li>
+<li>SELECT * FROM 表名</li>      
+
+</ul>
+</details>
+
+
+
