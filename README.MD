@@ -128,11 +128,28 @@
 <ul>
 <li>alter table class drop primary key;</li>
 <li>alter table class modify id int(11),drop primary key;//将class表中的id 重置为普通列 </li>
-<li>UPDATE 表名 SET 字段1 WHERE 主键 = val</li>
-<li>SELECT * FROM 表名</li>      
 
 </ul>
 </details>
+
+### **2019/12/21**⌚️
+
+- windos身上的子对象有哪些
+
+<details >
+<summary>点击</summary>
+<ul>
+<li>window.history</li>
+<li>window.frames</li>
+<li>window.screen</li>
+<li>window.navigator</li>
+<li>window.location</li>
+<li>window.document</li>
+
+</ul>
+</details>
+
+
 
 
 
