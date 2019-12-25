@@ -151,5 +151,53 @@
 
 
 
+### **2019/12/23**⌚️
+
+- localStorage的方法有哪些
+
+<details >
+<summary>点击</summary>
+<ul>
+<li>localStorage.setItem(key,val)</li>
+<li>localStorage.getItem(key)</li>
+<li>localStorage.removeItem(key)</li>
+<li>localStorage.clear()</li>
+
+</ul>
+</details>
 
 
+
+### **2019/12/24**⌚️
+
+- 如何设置一条３天之后过期的在根目录下的cookie
+
+<details >
+<summary>点击</summary>
+
+```js
+var d = new Date();
+d.setDate(d.getDate()+3);
+document.cookie = "user=admin;path=/;expires="+d;
+```
+
+</details>
+
+
+
+### **2019/12/25**⌚️
+
+- 什么是发布订阅者模式
+
+<details >
+<summary>点击</summary>
+<ul>
+<li>window.history</li>
+<li>window.frames</li>
+<li>window.screen</li>
+<li>window.navigator</li>
+<li>window.location</li>
+<li>window.document</li>
+
+</ul>
+</details>
