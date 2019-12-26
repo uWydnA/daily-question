@@ -320,11 +320,11 @@ remove:function (key,fn) {
     }
 ```
 
-### 发布-订阅的顺序探讨
+#### 发布-订阅的顺序探讨
 
 我们通常所看到的都是先订阅再发布，但是必须要遵守这种顺序吗？答案是不一定的。如果发布者先发布一条消息，但是此时还没有订阅者订阅此消息，我们可以不让此消息消失于宇宙之中。就如同QQ离线消息一样，离线的消息被保存在服务器中，接收人下次登录之后，才会收到此消息。同样的，我们可以建立一个存放离线事件的堆栈，当事件发布的时候，如果此时还没有订阅者订阅这个事件，我们暂时把发布事件的动作包裹在一个函数里，这些包装函数会被存入堆栈中，等到有对象来订阅事件的时候，我们将遍历堆栈并依次执行这些包装函数，即重发里面的事件，不过离线事件的生命周期只有一次，就像qq未读消息只会提示你一次一样。
 
-### JavaScript实现发布-订阅模式的便利性
+#### JavaScript实现发布-订阅模式的便利性
 
 因为JavaScript有回调函数这个优势存在，我们写开发-订阅显得更简单一点。传统的发布-订阅比如Java通常会把订阅者自身当成引用传入发布者对象中，同时订阅者对象还需提供一个名为诸如update的方法，供发布者对象在合适的时候调用。下面代码用js模拟下传统的实现。
 
@@ -352,17 +352,88 @@ dep.addSub(new Watcher(function () {
 dep.notify();
 ```
 
-### 小结
+#### 小结
 
 - 发布-订阅的优势很明显，做到了时间上的解耦和对象之间的解耦，从架构上看，MVC，MVVM都少不了发布-订阅的参与，我们常用的Vue也是基于发布-订阅的，最近会抽时间写下vue的源码实现，同样的node中的EventEmitter也是发布订阅的，之前也手写过它的实现。
-- 发布-订阅同时也是有缺点存在的，创建订阅者本身要消耗一定的时间和内存，而且当你订阅一个消息以后，可能此消息最后都未发生，但是这个订阅者会始终存在于内存中。如果程序中大量使用发布-订阅的话，也会使得程序跟踪bug变得困难。
-
- 
-
- 
-
- 
-
- 
+- 发布-订阅同时也是有缺点存在的，创建订阅者本身要消耗一定的时间和内存，而且当你订阅一个消息以后，可能此消息最后都未发生，但是这个订阅者会始终存在于内存中。如果程序中大量使用发布-订阅的话，也会使得程序跟踪bug变得困难。 
 
 </details>
+
+
+
+### **2019/12/26**⌚️
+
+- 请用jQuery实现一个图片的手风琴效果
+
+<details >
+<summary>点击</summary>
+
+```html
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .wrap {
+            width: 1178px;
+            height: 174px;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+
+        }
+
+        .wrap ul li {
+            float: left;
+            width: 210px;
+            height: 174px;
+            overflow: hidden;
+        }
+
+        .wrap ul {
+            width: 2000px;
+        }
+
+        .wrap ul li img {
+            width: 550px;
+            height: 174px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <ul>
+            <li style='width:550px'><img src="http://pic.shejiben.com/hot_sjb/377_8180.jpg?1462261126" alt=""></li>
+            <li><img src="http://pic.shejiben.com/hot_sjb/377_8288.jpg?1464830033" alt=""></li>
+            <li><img src="http://pic.shejiben.com/hot_sjb/377_8155.jpg?1460709517" alt=""></li>
+            <li><img src="http://pic.shejiben.com/hot_sjb/377_7937.jpg?1456984280" alt=""></li>
+        </ul>
+    </div>
+    <script src="https://lib.baomitu.com/jquery/1.12.4/jquery.js"></script>
+    <script>
+        $(".wrap").find("li").mouseover(function () {
+            $(this).stop().animate({
+                width: 550
+            }).siblings().stop().animate({
+                width: 210
+            })
+        })
+    </script>
+</body>
+
+</html>
+```
+
+</details>
+
+
+
