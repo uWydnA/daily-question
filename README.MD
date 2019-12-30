@@ -437,3 +437,177 @@ dep.notify();
 
 
 
+### **2019/12/27**⌚️
+
+- 说说jQuery的尺寸类方法
+
+<details >
+<summary>点击</summary>尺寸
+
+### width()
+
+> 设置或返回元素的宽度（不包括内边距、边框或外边距）
+
+```js
+$(".box").width();//获得宽度
+$(".box").width(300);//设置宽度
+```
+
+
+
+### height()
+
+> 设置或返回元素的高度（不包括内边距、边框或外边距）
+
+```js
+$(".box").height();//获得宽度
+$(".box").height(300);//设置宽度
+```
+
+
+
+### innerWidth()
+
+> 设置或返回元素的宽度（包括内边距）
+
+```js
+$(".box").innerWidth();//获得offsetWidth
+$(".box").innerWidth(300);//值减去padding后设置给宽度
+```
+
+
+
+### innerHeight()
+
+> 设置或返回元素的高度（包括内边距）
+
+```js
+$(".box").innerHeight();//获得offsetHeight
+$(".box").innerHeight(300);//值减去padding后设置给高度
+```
+
+
+
+### outerWidth()
+
+> 设置或返回元素的宽度（包括内边距,包括边框）
+
+```js
+$(".box").outerWidth();//获得clientWidth
+$(".box").outerWidth(300);//值减去padding和border后设置给宽度
+```
+
+
+
+### outerHeight()
+
+> 设置或返回元素的高度（包括内边距,包括边框）
+
+```js
+$(".box").outerHeight();//获得clientHeight
+$(".box").outerHeight(300);//值减去padding和border后设置给高度
+```
+
+
+
+### offset()
+
+> 设置或返回元素距离页面的left和top,返回一个对象(包含position+margin)
+
+```js
+console.log($(".box1").offset());       //position+margin
+$(".box1").offset({left:100,top:100}) //值减去margin后设置给left和top
+```
+
+
+
+### position()
+
+> 返回元素距离页面的left和top,返回一个对象(不margin)
+
+```js
+$(".box1").position().left;
+$(".box1").position().top	;
+```
+
+
+
+### scrollTop()
+
+> 设置或返回滚动条的高度
+
+```js
+$(".box1").scrollTop();
+$(".box1").scrollTop(300);
+```
+
+
+
+</details>
+
+
+
+### **2019/12/28**⌚️
+
+- 事件流的状态及含义
+
+<details >
+<summary>点击</summary>
+<ul>
+<li>事件冒泡：从内向外，依次触发所有父级的相同事件</li>
+<li>事件捕获：从外向内，依次触发从最大的父级到目标的相同事件</li>
+<li>目标事件：当前真正要触发的事件</li>
+
+</ul>
+</details>
+
+
+
+### **2019/12/29**⌚️
+
+- cookie的特点
+
+<details >
+<summary>点击</summary>
+<ul>
+<li>文本</li>
+<li>大小4K</li>
+<li>不能跨域</li>
+<li>条数50</li>
+<li>时间限制</li>
+
+</ul>
+</details>
+
+### **2019/12/30**⌚️
+
+- $.ajax()怎么实现超时报错
+
+<details >
+<summary>点击</summary>
+
+```js
+$.ajax({
+    url:"https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su",
+    dataType:"jsonp",
+    jsonp:"cb",
+    data:{
+        wb:"html"
+    },
+    success:function(res,status,xhr){
+		console.log(res); 
+    	console.log(status);
+    	console.log(xhr);
+	},
+    error:function(xhr,status,res){
+    	console.log(xhr);
+    	console.log(status);
+    	console.log(res);
+	}
+	timeOut:100,//数值单位为毫秒，超时会执行error函数,status和res会输出timeOut字符串
+})
+```
+
+
+
+</details>
