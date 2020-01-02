@@ -611,3 +611,84 @@ $.ajax({
 
 
 </details>
+
+
+
+### **2019/12/31**⌚️
+
+- 什么是端口
+
+<details >
+<summary>点击</summary>
+<ul>
+<li>端口的作用：`通过端口来区分出同一电脑内不同应用或者进程，从而实现一条物理网线(通过分组交换技术-比如internet)同时链接多个程`</li>
+<li>端口号是一个 16位的 uint, 所以其范围为 1 to 65535 (对TCP来说, port 0 被保留，不能被使用. 对于UDP来说, source端的端口号是可选的， 为0时表示无端口).</li>
+<li>`app.listen(3000)`，进程就被打标，电脑接收到的3000端口的网络消息就会被发送给我们启动的这个进程</li>
+
+</ul>
+</details>
+
+### **2020/01/01**⌚️
+
+- node如何实现get/post请求返回数据
+
+<details >
+<summary>点击</summary>
+
+```js
+const http = require("http");
+const fs = require("fs");
+const url = require("url");
+const querystring = require("querystring");
+http.createServer((req,res)=>{
+    if(req.url != "/favicon.ico"){
+   		var pathname = url.parse(req.url).pathname;
+        if(pathname === "/api"){
+        	ajaxHandle(req,res)    
+        }else{
+            fsHandle(req,res)
+        }
+    }
+}).listen("81","127.0.0.1",()=>{
+    console.log("run server on http://127.0.0.1:81");
+})
+function ajaxHandle(req,res){
+    let str = "";
+    req.on("data",(data)=>{
+        str +=data;
+    })
+    req.on("end",()=>{
+        let data = str ? querystring(str):url.parse(req.url);
+        res.write(JSON.parse(data));
+        res.end();
+    })
+}
+function fsHandle(req,res){
+}
+```
+
+
+
+</details>
+
+
+
+### **2020/01/02**⌚️
+
+- gulp如何自动开启服务器
+
+<details >
+<summary>点击</summary>
+
+```js
+const gulp = require("gulp");
+const connect = require("gulp-connect");
+function serverFn(){
+    connect.server({
+        root:"文件夹名"，
+       	port:"端口名"
+    })
+}
+```
+
+</details>
