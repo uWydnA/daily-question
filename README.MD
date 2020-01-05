@@ -692,3 +692,444 @@ function serverFn(){
 ```
 
 </details>
+
+### **2020/01/03**⌚️
+
+- 模块规范化的概念及优点
+
+<details >
+<summary>点击</summary>
+
+<ul>
+<li>模块规范化的概念：将项目的所有功能封装成独立的模块，模块之间按照一定的关系或者调用，实现整个项目的搭建</li>
+<li>模块规范化的优点：封装，重用性强，耦合低，方便单独扩展</li>
+</ul>
+
+</details>
+
+### **2020/01/04**⌚️
+
+- AMD模块的使用
+
+<details >
+<summary>点击</summary>
+
+### require()
+
+> 引入入口,引入模块
+>
+> require == requirejs //true
+
+与传统的<script>标记相比，RequireJS采用了不同的方法来加载脚本。尽管它还可以快速运行并优化得很好，但主要目标是鼓励使用模块化代码。作为其一部分，它鼓励使用**模块ID**代替脚本标记的URL。
+
+RequireJS加载相对于[baseUrl的](https://requirejs.org/docs/api.html#config-baseUrl)所有代码。通常，将baseUrl设置为与data-main属性中使用的脚本相同的目录，以使顶级脚本加载页面。该[数据主要属性](https://requirejs.org/docs/api.html#data-main)是一个特殊的属性，require.js将检查启动脚本加载。本示例将以**脚本**的baseUrl结尾：
+
+```
+<!--This sets the baseUrl to the "scripts" directory, and
+    loads a script that will have a module ID of 'main'-->
+<script data-main="scripts/main.js" src="scripts/require.js"></script>
+```
+
+或者，可以通过[RequireJS config](https://requirejs.org/docs/api.html#config)手动设置[baseUrl](https://requirejs.org/docs/api.html#config)。如果没有显式配置且未使用data-main，则默认的baseUrl是包含运行RequireJS的HTML页面的目录。
+
+默认情况下，RequireJS还假定所有依赖项都是脚本，因此，它不会在模块ID上看到尾随的“ .js”后缀。在将模块ID转换为路径时，RequireJS将自动添加它。使用[path config](https://requirejs.org/docs/api.html#config-paths)，可以设置一组脚本的位置。与传统的<script>标记相比，所有这些功能都允许您为脚本使用较小的字符串。
+
+有时您可能确实想直接引用脚本，而又不遵循“ baseUrl +路径”规则来查找脚本。如果模块ID具有以下特征之一，则该ID将不会通过“ baseUrl +路径”配置传递，而只会被视为与文档相关的常规URL：
+
+- 以“ .js”结尾。
+- 以“ /”开头。
+- 包含URL协议，例如“ http：”或“ https：”。
+
+
+
+### 参数
+
+#### 数组
+
+```js
+["module/mA","module/mB"]
+```
+
+> 数组里存放多个小模块(JS的相对路径)
+>
+> 每个小模块之间是异步
+
+#### 回调函数
+
+```js
+function(data1,data2){}
+```
+
+> 回调函数和外部代码之间是异步
+>
+> 回调函数和所有小模块之间是同步
+
+### 引入同文件夹下的jS
+
+```js
+require(["module/mA.js", "module/mB.js"], function (a, b) {
+    a.show(b.data);
+    b.show(a.data);
+})
+```
+
+
+
+### config(obj)
+
+> 配置路径信息
+
+obj包含2个键值对
+
+基目录baseUrl：指定require在引入小模块时的起始路径
+
+定义小模块的别名paths：起别名，在require引入模块时，可以通过别名引入模块
+
+```js
+require.config({
+    baseUrl: "module4",
+    paths: {
+        jq: "../libs/jquery",
+        a: "mA",
+        b: "mB"
+    }
+})
+```
+
+
+
+### define()
+
+> 暴露入口,定义模块
+
+模块与传统脚本文件的不同之处在于，它定义了一个范围广泛的对象，可避免污染全局名称空间。它可以显式列出其依赖关系，并在不需要引用全局对象的情况下获取这些依赖关系的句柄，而是将依赖关系作为定义模块的函数的参数来接收。RequireJS中的[模块](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth)是[Module Pattern](http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth)的扩展，其优点是不需要全局变量来引用其他模块。
+
+模块的RequireJS语法允许它们以尽可能快的速度加载，即使顺序混乱也可以，但是以正确的依赖关系顺序进行评估，并且由于未创建全局变量，因此可以[在页面中加载模块的多个版本](https://requirejs.org/docs/api.html#multiversion)。
+
+（如果您熟悉或正在使用CommonJS模块，那么也请参阅[CommonJS Notes](https://requirejs.org/docs/commonjs.html)以获取有关RequireJS模块格式如何映射到CommonJS模块的信息）。
+
+磁盘上每个文件只能有**一个**模块定义。可以通过[优化工具](https://requirejs.org/docs/optimization.html)将模块分组为优化的包。
+
+### 参数
+
+#### 数组
+
+> 当前定义的模块的依赖
+
+```js
+define(["libs/jQuery"],function (_) {
+    //Do setup work here
+	var a = $();
+    function show(data){
+        console.log(data);
+    }
+    return {
+        data:a,
+        fn:show
+    }
+});
+```
+
+​	如果当前定义的模块的`依赖没有`被放在define的第一个参数中被`提前加载`,那么在当前定义的模块中还想使用这个依赖的内容,那么千万`不要在当前模块`中直接`执行`,`封装成功能`,暴露出去,等待所有模块加载完成后再去执行。
+
+#### 回调函数
+
+### 简单名称/值对
+
+如果模块没有任何依赖关系，而只是名称/值对的集合，则只需将对象文字传递给define（）：
+
+```js
+//Inside file my/shirt.js:
+define({
+    color: "black",
+    size: "unisize"
+});
+```
+
+### 定义函数
+
+如果模块没有依赖项，但是需要使用函数来完成一些设置工作，则定义自己，然后将函数传递给define（）：
+
+```js
+//my/shirt.js now does setup work
+//before returning its module definition.
+define([],function () {
+    //Do setup work here
+	var a = "aaa";
+    function show(data){
+        console.log(data);
+    }
+    return {
+        data:a,
+        fn:show
+    }
+});
+```
+
+
+
+### 实例
+
+### 模块A
+
+```js
+define([], function () {
+    var a = "aaa";
+
+    function fn(data) {
+        console.log("A模块的是：" + data);
+    }
+    return {
+        data: a,
+        show: fn
+    }
+})
+```
+
+
+
+### 模块B
+
+```js
+define([], function () {
+    var b = "bbb";
+
+    function fn(data) {
+        console.log("A模块的是：" + data);
+    }
+    return {
+        data: b,
+        show: fn
+    }
+})
+```
+
+
+
+### 主模块
+
+```js
+<script src="../../libs/require.js"></script>
+<script>
+    require(["module/mA.js", "module/mB.js"], function (a, b) {
+        a.show(b.data);
+        b.show(a.data);
+    })
+</script>
+```
+
+</details>
+
+
+
+### **2020/01/05**⌚️
+
+- 如何手写一个promise功能
+
+<details >
+<summary>点击</summary>
+
+```js
+  // let promise = new _Promise((resolve, reject) => {
+    //     //这里放入我们要执行的函数，可能是同步，也可能是异步, 这里我们就来写一个异步的执行
+    //     setTimeout(() => {
+    //         resolve('hello');
+    //     })
+    // })
+
+    // promise.then(data => {
+    //     console.log(data);
+    // }, err => {
+    //     console.log(err)
+    // })]
+    class _Promise {
+        constructor(exector) {
+            let self = this;
+            this.status = "pending";
+            this.value;
+            this.reason;
+            this.onResolvedCallbacks = [];
+            this.onRejectedCallbacks = [];
+
+            function success(value) {
+                if (self.status === "pending") {
+                    self.value = value;
+                }
+                self.status = "resolved";
+                self.onResolvedCallbacks.forEach((fn) => {
+                    fn();
+                });
+            }
+
+            function error(reason) {
+                if (self.status === "pending") {
+                    self.reason = reason;
+                }
+                self.status = 'rejected';
+                self.onRejectedCallbacks.forEach((fn) => {
+                    fn();
+                });
+            }
+
+            try {
+                exector(success, error);
+            } catch (e) {
+                error(e);
+            }
+        }
+        // then(onResolved, onRejected) {
+        //     let self = this;
+        //     if (this.status === "resolved") {
+        //         onResolved(self.value);
+        //     } else if (this.status === "rejected") {
+        //         onRejected(self.reason);
+        //     } else if (this.status === 'pending') {
+        //         this.onResolvedCallbacks.push(() => {
+        //             onResolved(self.value);
+        //         })
+        //         this.onRejectedCallbacks.push(() => {
+        //             onRejected(self.reason)
+        //         });
+        //     }
+
+        // }
+        then(onFulfilled, onRejected) {
+
+            let self = this;
+
+            function resolvePromise(promise2, x, resolve, reject) {
+                if (promise2 === x) {
+                    return reject(new TypeError('Chaining cycle'));
+                }
+                if (x !== null && (typeof x === 'object' || typeof x === 'function')) {
+                    try {
+                        let then = x.then;
+                        if (typeof then === 'function') {
+                            then.call(x, y => {
+                                resolvePromise(promise2, y, resolve, reject);
+                            }, err => {
+                                reject(err);
+                            });
+                        } else {
+                            resolve(x);
+                        }
+                    } catch (e) {
+                        reject(e);
+                    }
+                } else {
+                    resolve(x);
+                }
+            }
+            let promise2 = new _Promise((resolve, reject) => {
+                if (this.status === 'resolved') {
+                    try {
+                        let x = onFulfilled(self.value);
+                        resolvePromise(promise2, x, resolve, reject);
+                    } catch (e) {
+                        reject(e);
+                    }
+                }
+
+                if (this.status === 'rejected') {
+                    try {
+                        let x = onRejected(self.reason);
+                        resolvePromise(promise2, x, resolve, reject);
+                    } catch (e) {
+                        reject(e);
+                    }
+                }
+                if (this.status === 'pending') {
+                    this.onResolvedCallbacks.push(() => {
+                        try {
+                            let x = onFulfilled(self.value);
+                            resolvePromise(promise2, x, resolve, reject);
+                        } catch (e) {
+                            reject(e);
+                        }
+
+                    })
+                    this.onRejectedCallbacks.push(() => {
+                        try {
+                            let x = onRejected(self.reason);
+                            resolvePromise(promise2, x, resolve, reject);
+                        } catch (e) {
+                            reject(e);
+                        }
+                    });
+                }
+            })
+            return promise2;
+        }
+
+    }
+    let p = new _Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve('hello');
+        })
+    })
+
+    let p2 = p.then(data => {
+        return p2;
+    })
+
+
+
+    // let promise = new _Promise((resolve, reject) => {
+    //     if (Math.random() > 0) {
+    //         resolve('成功');
+    //     } else {
+    //         reject('失败');
+    //     }
+    // })
+    // // for (var i = 0; i < 1000; i++) {
+    // //     console.log(1)
+    // // }
+    // console.log(promise.then(data => {
+    //     console.log("sudo");
+    // }))
+
+    // url1 = "http://127.0.0.1/myown/promise/php/data1.php"
+    // url2 = "http://127.0.0.1/myown/promise/php/data2.php"
+    // url3 = "http://127.0.0.1/myown/promise/php/data3.php"
+
+    // function getAjax(url, data) {
+    //     var p = new _Promise(function (success, error) {
+    //         var str = "";
+    //         data = data || {};
+    //         var xhr = new XMLHttpRequest();
+    //         for (var i in data) {
+    //             str += `${i}=${data[i]}&`;
+    //         }
+    //         str = str.slice(0, str.length - 1);
+    //         url = url + "?" + str + "__retr0__=" + new Date().getDate();
+    //         xhr.open("get", url, true);
+    //         xhr.onreadystatechange = function () {
+    //             if (xhr.readyState === 4 && xhr.status === 200) {
+    //                 success(xhr.responseText);
+    //             } else if (xhr.readyState === 4 && xhr.status != 200) {
+    //                 error(xhr.status);
+    //             }
+    //         }
+    //         xhr.send();
+    //     })
+    //     return p;
+    // }
+    // var p1 = getAjax(url1).then(function (res) {
+    //     console.log(res);
+    // }, function (res) {
+    //     console.log(res)
+    // })
+    // var p2 = getAjax(url2).then(function (res) {
+    //     console.log("jQuery");
+    // }, function (res) {
+    //     console.log(res)
+    // })
+    // var p3 = getAjax(url3).then(function (res) {
+    //     console.log("jQuery");
+    // }, function (res) {
+    //     console.log(res)
+    // })
+    // Promise.all([p1, p2, p3])
+```
+
+</details>
