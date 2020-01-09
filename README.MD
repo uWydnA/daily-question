@@ -1133,3 +1133,107 @@ define([], function () {
 ```
 
 </details>
+
+
+
+### **2020/01/06**⌚️
+
+- 结果是什么?
+
+    ```js
+    Promise.resolve(5)
+    ```
+
+    
+
+    <details >
+          <summary>点击</summary>
+
+    我们可以将我们想要的任何类型的值传递`Promise.resolve`，无论是否`promise`。 该方法本身返回带有已解析值的`Promise`。 如果您传递常规函数，它将是具有常规值的已解决`promise`。 如果你通过了promise，它将是一个已经resolved的且带有传的值的promise。
+
+    上述情况，我们传了数字5，因此返回一个resolved状态的promise，resolve值为`5`
+      </details>
+
+### **2020/01/07**⌚️
+
+- 哪些方法修改了原数组?
+
+  ```js
+  const emojis = ['✨', '🥑', '😍']
+  
+  emojis.map(x => x + '✨')
+  emojis.filter(x => x !== '🥑')
+  emojis.find(x => x !== '🥑')
+  emojis.reduce((acc, cur) => acc + '✨')
+  emojis.slice(1, 2, '✨') 
+  emojis.splice(1, 2, '✨')
+  ```
+
+  
+
+  <details >
+        <summary>点击</summary>
+        <ul>
+            <li>使用`splice`方法，我们通过删除，替换或添加元素来修改原始数组。 在这种情况下，我们从索引1中删除了2个元素（我们删除了`'🥑'`和`'😍'`），同时添加了![sparkles](https://github.githubassets.com/images/icons/emoji/unicode/2728.png)emoji表情。</li>
+            <li>`map`，`filter`和`slice`返回一个新数组，`find`返回一个元素，而`reduce`返回一个减小的值。</li>
+        </ul>
+    </details>
+
+### **2020/01/08**⌚️
+
+- 输出什么?
+
+  ```js
+  const food = ['🍕', '🍫', '🥑', '🍔']
+  const info = { favoriteFood: food[0] }
+  
+  info.favoriteFood = '🍝'
+  
+  console.log(food)
+  ```
+
+  <details >
+        <summary>点击</summary>
+
+  我们将`info`对象上的`favoriteFood`属性的值设置为披萨表情符号“![pizza](https://github.githubassets.com/images/icons/emoji/unicode/1f355.png)”的字符串。字符串是原始数据类型。在JavaScript中，原始数据类型通过值起作用
+
+  在这种情况下，我们将`info`对象上的`favoriteFood`属性的值设置为等于`food`数组中的第一个元素的值，字符串为披萨表情符号（`'🍕'` ）。字符串是原始数据类型，并且通过值进行交互，我们更改`info`对象上`favoriteFood`属性的值。 food数组没有改变，因为favoriteFood的值只是该数组中第一个元素的值的复制，并且与该元素上的元素没有相同的内存引用食物`[0]`。当我们记录食物时，它仍然是原始数组`['🍕'，'🍫'，'🥑'，'🍔']`。
+    </details>
+
+### **2020/01/09**⌚️
+
+- 依次输出什么
+
+  ```js
+  const myPromise = () => Promise.resolve('I have resolved!')
+  
+  function firstFunction() {
+    myPromise().then(res => console.log(res))
+    console.log('second')
+  }
+  
+  async function secondFunction() {
+    console.log(await myPromise())
+    console.log('second')
+  }
+  
+  firstFunction()
+  secondFunction()
+  ```
+
+  
+
+  <details >
+        <summary>点击</summary>
+
+  <li>`second`, `I have resolved!` and `I have resolved!`, `second`</li>
+
+  <li> 有了promise，我们通常会说：当我想要调用某个方法，但是由于它可能需要一段时间，因此暂时将它放在一边。只有当某个值被resolved/rejected，并且执行栈为空时才使用这个值。
+
+  我们可以在`async`函数中通过`.then`和`await`关键字获得该值。 尽管我们可以通过`.then`和`await`获得promise的价值，但是它们的工作方式有所不同。
+
+  在 `firstFunction`中，当运行到`myPromise`方法时我们将其放在一边，即promise进入微任务队列，其他后面的代码（`console.log('second')`）照常运行，因此`second`被打印出，`firstFunction`方法到此执行完毕，执行栈中宏任务队列被清空，此时开始执行微任务队列中的任务，`I have resolved`被打印出。
+
+  在`secondFunction`方法中，我们通过`await`关键字，暂停了后面代码的执行，直到异步函数的值被解析才开始后面代码的执行。这意味着，它会等着直到 `myPromise` 以值`I have resolved`被解决之后，下一行`second`才开始执行。</li>
+
+    </details>
