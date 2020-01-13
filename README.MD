@@ -1268,8 +1268,33 @@ define([], function () {
   <details >
         <summary>点击</summary>
 
-  `[1, 2]`是初始值。初始值将会作为首次调用时第一个参数 `acc` 的值。在第一次执行时， `acc` 的值是 `[1, 2]`， `cur` 的值是 `[0, 1]`。合并它们，结果为 `[1, 2, 0, 1]`。 第二次执行， `acc` 的值是 `[1, 2, 0, 1]`， `cur` 的值是 `[2, 3]`。合并它们，最终结果为 `[1, 2, 0, 1, 2, 3]`
-    </details>
+  - HTML
+
+    ```html
+    <div class="top">
+        <h1>子页</h1>
+    </div>
+    <div class="box"></div>
+    <div class="footer"></div>
+    ```
+
+  - JS
+
+    用法是在load()方法中传入绝对坐标的URL地址字符，地址后`空格加CSS选择器字符`可以实现选择具体的元素插入
+
+    ```js
+    $(".box").load("http://localhost/1912-server/jq-ajax/data/page.html .nav");
+    $(".footer").load("http://localhost/1912-server/jq-ajax/data/page.html p");
+    ```
+
+  - 外部HTML
+
+    ```html
+    <div class="nav">导航</div>
+    <p>页脚</p>
+    ```
+
+      </details>
 
     ### **2020/01/12**⌚️
 
@@ -1304,20 +1329,20 @@ define([], function () {
 
     ### **2020/01/13**⌚️
 
-- 输出是什么？
+-  输出是什么？
 
   ```js
-  [[0, 1], [2, 3]].reduce(
-    (acc, cur) => {
-      return acc.concat(cur)
-    },
-    [1, 2]
-  )
+  [...'Lydia']
   ```
+
+  - A: `["L", "y", "d", "i", "a"]`
+  - B: `["Lydia"]`
+  - C: `[[], "Lydia"]`
+  - D: `[["L", "y", "d", "i", "a"]]`
 
   <details >
         <summary>点击</summary>
 
-  `[1, 2]`是初始值。初始值将会作为首次调用时第一个参数 `acc` 的值。在第一次执行时， `acc` 的值是 `[1, 2]`， `cur` 的值是 `[0, 1]`。合并它们，结果为 `[1, 2, 0, 1]`。 第二次执行， `acc` 的值是 `[1, 2, 0, 1]`， `cur` 的值是 `[2, 3]`。合并它们，最终结果为 `[1, 2, 0, 1, 2, 3]`
+  A:	string 类型是可迭代的。扩展运算符将迭代的每个字符映射成一个元素。
     </details>
 
