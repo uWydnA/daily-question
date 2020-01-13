@@ -1253,6 +1253,68 @@ define([], function () {
   )
   ```
 
+  
+
+  <details >
+        <summary>点击</summary>
+
+  `[1, 2]`是初始值。初始值将会作为首次调用时第一个参数 `acc` 的值。在第一次执行时， `acc` 的值是 `[1, 2]`， `cur` 的值是 `[0, 1]`。合并它们，结果为 `[1, 2, 0, 1]`。 第二次执行， `acc` 的值是 `[1, 2, 0, 1]`， `cur` 的值是 `[2, 3]`。合并它们，最终结果为 `[1, 2, 0, 1, 2, 3]`
+    </details>
+
+  ### **2020/01/11**⌚️
+
+- $().load怎么使用
+
+  <details >
+        <summary>点击</summary>
+
+  `[1, 2]`是初始值。初始值将会作为首次调用时第一个参数 `acc` 的值。在第一次执行时， `acc` 的值是 `[1, 2]`， `cur` 的值是 `[0, 1]`。合并它们，结果为 `[1, 2, 0, 1]`。 第二次执行， `acc` 的值是 `[1, 2, 0, 1]`， `cur` 的值是 `[2, 3]`。合并它们，最终结果为 `[1, 2, 0, 1, 2, 3]`
+    </details>
+
+    ### **2020/01/12**⌚️
+
+- 用$.ajax()如何实现loading效果
+
+  <details >
+        <summary>点击</summary>
+
+  ```js
+  $("document").on("click",()=>{
+      var xhr = $.ajax({
+          url: "http://127.0.0.1/myown/jq-ajax/data/loading.php",
+          success:function(res){
+              console.log(res);
+              $("img").hide();
+          },
+          beforesend:function(){
+                  if($("img")[0]){
+                      $("body").append($("<img src = '1.jpg' class='loading'>"));
+                  }else{
+  	 				$("img").show();
+                  }
+              }
+          }
+      })
+  })
+  ```
+
+  
+
+    </details>
+
+    ### **2020/01/13**⌚️
+
+- 输出是什么？
+
+  ```js
+  [[0, 1], [2, 3]].reduce(
+    (acc, cur) => {
+      return acc.concat(cur)
+    },
+    [1, 2]
+  )
+  ```
+
   <details >
         <summary>点击</summary>
 
