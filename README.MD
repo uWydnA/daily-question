@@ -1425,6 +1425,8 @@ define([], function () {
   <details >
         <summary>点击</summary>
 
+  #### 答案: C
+
   我们可以通过解构赋值来解析来自对象的数组或属性的值，比如说：
 
   ```
