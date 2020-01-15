@@ -1377,3 +1377,71 @@ define([], function () {
     </details>
 
 <hr>
+
+### **2020/01/14**⌚️
+
+- 输出是什么？
+
+  ```js
+  ['1','7','11'].map(parseInt)
+  ```
+
+  <details >
+        <summary>点击</summary>
+
+  <ul>
+
+  <li>首先,arr.map()方法中的回调函数接受3个参数,分别为ele,val,self,即每个值,索引,数组自身</li>
+
+  <li>其次,parseInt函数接受2个参数,分为是val,num,即需要转成数值的字符和按照几进制转换</li>
+
+  <li>map第一次遍历,传给parseInt(1,0),得到1,因为第二个参数为0,默认按10进制</li>
+
+  <li>map第二次遍历,传给parseInt(7,1),得到NAN,因为第二个参数为1,默认按1进制,报错</li>
+
+  <li>map第三次遍历,传给parseInt(11,2),得到3,因为第二个参数为2,默认按2进制</li>
+
+  </ul>
+    </details>
+
+<hr>
+
+### **2020/01/15**⌚️
+
+- 输出是什么？
+
+  ```js
+  const numbers = [1, 2, 3, 4, 5];
+  const [y] = numbers;
+  
+  console.log(y);
+  ```
+
+  - A: `[[1, 2, 3, 4, 5]]`
+  - B: `[1, 2, 3, 4, 5]`
+  - C: `1`
+  - D: `[1]`
+
+  <details >
+        <summary>点击</summary>
+
+  我们可以通过解构赋值来解析来自对象的数组或属性的值，比如说：
+
+  ```
+  [a, b] = [1, 2];
+  ```
+
+  ![img](https://camo.githubusercontent.com/8903a861b474f8b63da9d0d46d14a74d9e2db039/68747470733a2f2f692e696d6775722e636f6d2f41444670566f702e706e67)
+
+  `a`的值现在是`1`，`b`的值现在是`2`.而在题目中，我们是这么做的:
+
+  ```
+  [y] = [1, 2, 3, 4, 5];
+  ```
+
+  ![img](https://camo.githubusercontent.com/3474488027d64c5fc9955ab5be7c3a88d1254449/68747470733a2f2f692e696d6775722e636f6d2f4e7a476b4d4e6b2e706e67)
+
+  也就是说，`y`等于数组的第一个值就是数字`1`.我们输出`y`， 返回`1`.
+    </details>
+
+<hr>
