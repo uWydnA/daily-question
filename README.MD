@@ -1448,8 +1448,6 @@ define([], function () {
 
 <hr>
 
-
-
 ### **2020/01/16**⌚️
 
 - 输出是什么？
@@ -1468,6 +1466,77 @@ define([], function () {
         <summary>点击</summary>
 
   如果你有两个名称相同的键，则键会被替换掉。它仍然位于第一个键出现的位置，但是值是最后出现那个键的值。
+    </details>
+
+<hr>
+
+### **2020/01/17**⌚️
+
+- 输出是什么？
+
+  ```js
+  const person = {
+    name: "Lydia",
+    age: 21
+  }
+  
+  for (const [x, y] of Object.entries(person)) {
+    console.log(x, y)
+  }
+  ```
+
+  - A: `name` `Lydia` and `age` `21`
+  - B: `["name", "Lydia"]` and `["age", 21]`
+  - C: `["name", "age"]` and `undefined`
+  - D: `Error`
+
+  <details >
+        <summary>点击</summary>
+
+  #### 答案: A
+
+  `Object.entries()`方法返回一个给定对象自身可枚举属性的键值对数组，上述情况返回一个二维数组，数组每个元素是一个包含键和值的数组：
+
+  `[['name'，'Lydia']，['age'，21]]`
+
+  使用`for-of`循环，我们可以迭代数组中的每个元素，上述情况是子数组。 我们可以使用`const [x，y]`在`for-of`循环中解构子数组。 `x`等于子数组中的第一个元素，`y`等于子数组中的第二个元素。
+
+  第一个子阵列是`[“name”，“Lydia”]`，其中`x`等于`name`，而`y`等于`Lydia`。 第二个子阵列是`[“age”，21]`，其中`x`等于`age`，而`y`等于`21`。
+    </details>
+
+<hr>
+
+### **2020/01/18**⌚️
+
+- 输出是什么？
+
+  ```js
+  const set = new Set()
+  
+  set.add(1)
+  set.add("Lydia")
+  set.add({ name: "Lydia" })
+  
+  for (let item of set) {
+    console.log(item + 2)
+  }
+  ```
+
+  - A: `3`, `NaN`, `NaN`
+  - B: `3`, `7`, `NaN`
+  - C: `3`, `Lydia2`, `[Object object]2`
+  - D: `"12"`, `Lydia2`, `[Object object]2`
+
+  <details >
+        <summary>点击</summary>
+
+  “+”运算符不仅用于添加数值，还可以使用它来连接字符串。 每当JavaScript引擎发现一个或多个值不是数字时，就会将数字强制为字符串。
+
+  第一个是数字1。 1 + 2返回数字3。
+
+  但是，第二个是字符串“Lydia”。 “Lydia”是一个字符串，2是一个数字：2被强制转换为字符串。 “Lydia”和“2”被连接起来，产生字符串“Lydia2”。
+
+  `{name：“ Lydia”}`是一个对象。 数字和对象都不是字符串，因此将二者都字符串化。 每当我们对常规对象进行字符串化时，它就会变成`[Object object]`。 与“2”串联的“ [Object object]”成为“[Object object]2”。
     </details>
 
 <hr>
