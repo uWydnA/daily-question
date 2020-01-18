@@ -1447,3 +1447,27 @@ define([], function () {
     </details>
 
 <hr>
+
+
+
+### **2020/01/16**⌚️
+
+- 输出是什么？
+
+  ```js
+  const obj = { a: 'one', b: 'two', a: 'three' }
+  console.log(obj)
+  ```
+
+  - A: `{ a: "one", b: "two" }`
+  - B: `{ b: "two", a: "three" }`
+  - C: `{ a: "three", b: "two" }`
+  - D: `SyntaxError`
+
+  <details >
+        <summary>点击</summary>
+
+  如果你有两个名称相同的键，则键会被替换掉。它仍然位于第一个键出现的位置，但是值是最后出现那个键的值。
+    </details>
+
+<hr>
