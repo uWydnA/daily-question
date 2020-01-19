@@ -1540,3 +1540,36 @@ define([], function () {
     </details>
 
 <hr>
+
+### **2020/01/19**⌚️
+
+- 输出是什么？
+
+  ```js
+  const box = { x: 10, y: 20 };
+  
+  Object.freeze(box);
+  
+  const shape = box;
+  shape.x = 100;
+  console.log(shape)
+  ```
+
+  - A: `{ x: 100, y: 20 }`
+  - B: `{ x: 10, y: 20 }`
+  - C: `{ x: 100 }`
+  - D: `ReferenceError`
+
+  <details >
+        <summary>点击</summary>
+
+  `Object.freeze`使得无法添加、删除或修改对象的属性（除非属性的值是另一个对象）。
+
+  当我们创建变量`shape`并将其设置为等于冻结对象`box`时，`shape`指向的也是冻结对象。你可以使用`Object.isFrozen`检查一个对象是否被冻结，上述情况，`Object.isFrozen（shape）`将返回`true`。
+
+  由于`shape`被冻结，并且`x`的值不是对象，所以我们不能修改属性`x`。 `x`仍然等于`10`，`{x：10，y：20}`被打印。
+
+  注意，上述例子我们对属性`x`进行修改，可能会导致抛出TypeError异常（最常见但不仅限于严格模式下时）。
+    </details>
+
+<hr>
