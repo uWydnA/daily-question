@@ -1573,3 +1573,44 @@ define([], function () {
     </details>
 
 <hr>
+
+### **2020/01/20**⌚️
+
+- 输出是什么？
+
+  ```js
+  function nums(a, b) {
+    if
+    (a > b)
+    console.log('a is bigger')
+    else 
+    console.log('b is bigger')
+    return 
+    a + b
+  }
+  
+  console.log(nums(4, 2))
+  console.log(nums(1, 2))
+  ```
+
+  - A: `a is bigger`, `6` and `b is bigger`, `3`
+  - B: `a is bigger`, `undefined` and `b is bigger`, `undefined`
+  - C: `undefined` and `undefined`
+  - D: `SyntaxError`
+
+  <details >
+        <summary>点击</summary>
+
+  在JavaScript中，我们不必显式地编写分号(`;`)，但是JavaScript引擎仍然在语句之后自动添加分号。这称为**自动分号插入**。例如，一个语句可以是变量，或者像`throw`、`return`、`break`这样的关键字。
+
+  在这里，我们在新的一行上写了一个`return`语句和另一个值`a + b `。然而，由于它是一个新行，引擎并不知道它实际上是我们想要返回的值。相反，它会在`return`后面自动添加分号。你可以这样看:
+
+  ```
+    return;
+    a + b
+  ```
+
+  这意味着永远不会到达`a + b`，因为函数在`return`关键字之后停止运行。如果没有返回值，就像这里，函数返回`undefined`。注意，在`if/else`语句之后没有自动插入!
+    </details>
+
+<hr>
