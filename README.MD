@@ -1642,44 +1642,37 @@ define([], function () {
 
 <hr>
 
-### **2020/01/20**⌚️
+### **2020/01/22**⌚️
 
 - 输出是什么？
 
   ```js
-  function nums(a, b) {
-    if
-    (a > b)
-    console.log('a is bigger')
-    else 
-    console.log('b is bigger')
-    return 
-    a + b
-  }
+  const set = new Set()
   
-  console.log(nums(4, 2))
-  console.log(nums(1, 2))
+  set.add(1)
+  set.add("Lydia")
+  set.add({ name: "Lydia" })
+  
+  for (let item of set) {
+    console.log(item + 2)
+  }
   ```
 
-  - A: `a is bigger`, `6` and `b is bigger`, `3`
-  - B: `a is bigger`, `undefined` and `b is bigger`, `undefined`
-  - C: `undefined` and `undefined`
-  - D: `SyntaxError`
+  - A: `3`, `NaN`, `NaN`
+  - B: `3`, `7`, `NaN`
+  - C: `3`, `Lydia2`, `[Object object]2`
+  - D: `"12"`, `Lydia2`, `[Object object]2`
 
   <details >
         <summary>点击</summary>
 
-  在JavaScript中，我们不必显式地编写分号(`;`)，但是JavaScript引擎仍然在语句之后自动添加分号。这称为**自动分号插入**。例如，一个语句可以是变量，或者像`throw`、`return`、`break`这样的关键字。
+  “+”运算符不仅用于添加数值，还可以使用它来连接字符串。 每当JavaScript引擎发现一个或多个值不是数字时，就会将数字强制为字符串。
 
-  在这里，我们在新的一行上写了一个`return`语句和另一个值`a + b `。然而，由于它是一个新行，引擎并不知道它实际上是我们想要返回的值。相反，它会在`return`后面自动添加分号。你可以这样看:
+  第一个是数字1。 1 + 2返回数字3。
 
-  ```
-    return;
-    a + b
-  
-  ```
+  但是，第二个是字符串“Lydia”。 “Lydia”是一个字符串，2是一个数字：2被强制转换为字符串。 “Lydia”和“2”被连接起来，产生字符串“Lydia2”。
 
-  这意味着永远不会到达`a + b`，因为函数在`return`关键字之后停止运行。如果没有返回值，就像这里，函数返回`undefined`。注意，在`if/else`语句之后没有自动插入!
+  `{name：“ Lydia”}`是一个对象。 数字和对象都不是字符串，因此将二者都字符串化。 每当我们对常规对象进行字符串化时，它就会变成`[Object object]`。 与“2”串联的“ [Object object]”成为“[Object object]2”。
     </details>
 
 <hr>
