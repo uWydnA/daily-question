@@ -1676,3 +1676,41 @@ define([], function () {
     </details>
 
 <hr>
+
+### **2020/01/23**⌚️
+
+- 输出是什么？
+
+  ```js
+  JSON.parse()
+  ```
+
+  - A: Parses JSON to a JavaScript value
+  - B: Parses a JavaScript object to JSON
+  - C: Parses any JavaScript value to JSON
+  - D: Parses JSON to a JavaScript object only
+
+  <details >
+        <summary>点击</summary>
+
+  #### 答案: A
+
+  使用`JSON.parse()`方法，我们可以将JSON字符串解析为JavaScript值。
+
+  ```
+  // 将数字字符串化为有效的JSON，然后将JSON字符串解析为JavaScript值:
+  const jsonNumber = JSON.stringify(4) // '4'
+  JSON.parse(jsonNumber) // 4
+  
+  // 将数组值字符串化为有效的JSON，然后将JSON字符串解析为JavaScript值:
+  const jsonArray = JSON.stringify([1, 2, 3]) // '[1, 2, 3]'
+  JSON.parse(jsonArray) // [1, 2, 3]
+  
+  // 将对象字符串化为有效的JSON，然后将JSON字符串解析为JavaScript值:
+  const jsonArray = JSON.stringify({ name: "Lydia" }) // '{"name":"Lydia"}'
+  JSON.parse(jsonArray) // { name: 'Lydia' }
+  ```
+
+    </details>
+
+<hr>
