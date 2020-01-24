@@ -1714,3 +1714,37 @@ define([], function () {
     </details>
 
 <hr>
+
+### **2020/01/24**⌚️
+
+- 输出是什么？
+
+  ```js
+  const one = (false || {} || null)
+  const two = (null || false || "")
+  const three = ([] || 0 || true)
+  
+  console.log(one, two, three)
+  ```
+
+  - A: `false` `null` `[]`
+  - B: `null` `""` `true`
+  - C: `{}` `""` `[]`
+  - D: `null` `null` `true`
+
+  <details >
+        <summary>点击</summary>
+
+  #### 答案: C
+
+  使用`||`运算符，我们可以返回第一个真值。 如果所有值都是假值，则返回最后一个值。
+
+  `（false || {} || null）`：空对象`{}`是一个真值。 这是第一个（也是唯一的）真值，它将被返回。`one`等于`{}`。
+
+  `（null || false ||“”）`：所有值都是假值。 这意味着返回传递的值`""`。 `two`等于`""`。
+
+  `（[] || 0 ||“”）`：空数组`[]`是一个真值。 这是第一个返回的真值。 `three`等于`[]`。
+
+   </details>
+
+<hr>
