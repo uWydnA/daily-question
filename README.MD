@@ -1748,3 +1748,27 @@ define([], function () {
    </details>
 
 <hr>
+
+### **2020/01/25**⌚️
+
+- 输出是什么？
+
+  ```js
+  console.log(`${(x => x)('I love')} to program`)
+  ```
+
+  - A: `I love to program`
+  - B: `undefined to program`
+  - C: `${(x => x)('I love') to program`
+  - D: `TypeError`
+
+  <details >
+        <summary>点击</summary>
+
+  #### 答案: A
+
+  带有模板字面量的表达式首先被执行。相当于字符串会包含表达式，这个立即执行函数 `(x => x)('I love')` 返回的值. 我们向箭头函数 `x => x` 传递 `'I love'` 作为参数。`x` 等价于返回的 `'I love'`。这就是结果 `I love to program`。
+
+   </details>
+
+<hr>
