@@ -1772,3 +1772,34 @@ define([], function () {
    </details>
 
 <hr>
+
+### **2020/01/26**⌚️
+
+- 将会发生什么?
+
+  ```js
+  let config = {
+    alert: setInterval(() => {
+      console.log('Alert!')
+    }, 1000)
+  }
+  
+  config = null
+  ```
+
+  - A: `setInterval` 的回调不会被调用
+  - B: `setInterval` 的回调被调用一次
+  - C: `setInterval` 的回调仍然会被每秒钟调用
+  - D: 我们从没调用过 `config.alert()`, config 为 `null`
+
+  <details >
+        <summary>点击</summary>
+
+
+  #### 答案: A
+
+  一般情况下当我们将对象赋值为 `null`, 那些对象会被进行 *垃圾回收（garbage collected）* 因为已经没有对这些对象的引用了。然而，`setInterval`的参数是一个箭头函数（所以上下文绑定到对象 `config` 了），回调函数仍然保留着对 `config`的引用。只要存在引用，对象就不会被垃圾回收。因为没有被垃圾回收，`setInterval` 的回调每1000ms (1s)会被调用一次。
+
+   </details>
+
+<hr>
