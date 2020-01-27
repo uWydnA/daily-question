@@ -1824,13 +1824,15 @@ define([], function () {
   - C: `[]`
   - D: `undefined`
 
-  <details >
-        <summary>点击</summary>
+  - <details >
+          <summary>点击</summary>
 
-#### 答案: A
+  #### 答案: A
 
-方法 `language` 是一个 `setter`。Setters 并不保存一个实际值，它们的使命在于 *修改* 属性。当调用方法 `setter`， 返回 `undefined`。
+  方法 `language` 是一个 `setter`。Setters 并不保存一个实际值，它们的使命在于 *修改* 属性。当调用方法 `setter`， 返回 `undefined`。
 
-  </details>
+     </details>
+
+  
 
 <hr>
