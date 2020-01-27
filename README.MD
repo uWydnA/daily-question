@@ -1824,8 +1824,8 @@ define([], function () {
   - C: `[]`
   - D: `undefined`
 
-  - <details >
-          <summary>点击</summary>
+  <details >
+        <summary>点击</summary>
 
   #### 答案: A
 
