@@ -1831,53 +1831,6 @@ define([], function () {
 
 方法 `language` 是一个 `setter`。Setters 并不保存一个实际值，它们的使命在于 *修改* 属性。当调用方法 `setter`， 返回 `undefined`。
 
-
-
-## 一、什么是getter和setter
-
-- getter 是一种获得属性值的方法，setter是一种设置属性值的方法
-- getter负责查询值，它不带任何参数，setter则负责设置键值，值是以参数的形式传递，在他的函数体中，一切的return都是无效的
-- get/set访问器不是对象的属性，而是属性的特性，特性只有内部才用，因此在javaScript中不能直接访问他们，为了表示特性是内部值用两队中括号括起来表示如[[Value]]
-- 对象的属性又可分为对象属性和访问器属性（参考资料： [https://www.cnblogs.com/absolute-child/p/7188417.html](https://www.cnblogs.com/lvmylife/p/%20https://www.cnblogs.com/absolute-child/p/7188417.html)）
-
-## 二、使用方式
-
-### 2.1 set/get
-
-```js
-var person = {
-    _name: '',
-    get name() { return this._name },
-    set name(n) { this._name = n }
-}
- 
-// 测试
-person.name // 输出 --> ''
-person.name = 'Zhangsan'
-person.name // 输出 --> Zhangsan
-```
-### 2.2 Object.defineProperty
-
-
-```js
-var person = function() {
-    var _name = ' ';
-    var obj = {};
-    Object.defineProperty(obj, 'name', {
-        configurable: true,
-        enumerable: true,
-        get: function() {
-            return _name;
-        },
-        set: function(n) {
-            _name = n;
-        }
-    })
-    return obj;
-}();
-person.name = "Zhangsan";
-person.name // 输出 --> Zhangsan
-```
-   </details>
+  </details>
 
 <hr>
