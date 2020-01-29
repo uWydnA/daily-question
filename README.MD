@@ -1918,13 +1918,45 @@ define([], function () {
 
   函数 `addHobby` 接受两个参数，`hobby` 和有着对象 `person` 中数组 `hobbies` 默认值的 `hobbies`。
 
-  首相，我们调用函数 `addHobby`，并给 `hobby` 传递 `"running"` 以及给 `hobbies` 传递一个空数组。因为我们给 `hobbies` 传递了空数组，`"running"` 被添加到这个空数组。
+  首先，我们调用函数 `addHobby`，并给 `hobby` 传递 `"running"` 以及给 `hobbies` 传递一个空数组。因为我们给 `hobbies` 传递了空数组，`"running"` 被添加到这个空数组。
 
   然后，我们调用函数 `addHobby`，并给 `hobby` 传递 `"dancing"`。我们不向 `hobbies` 传递值，因此它获取其默认值 —— 对象 `person` 的 属性 `hobbies`。我们向数组 `person.hobbies` push `dancing`。
 
   最后，我们调用函数 `addHobby`，并向 `hobby` 传递 值 `"bdaking"`，并且向 `hobbies` 传递 `person.hobbies`。我们向数组 `person.hobbies` push `dancing`。
 
   pushing `dancing` 和 `baking` 之后，`person.hobbies` 的值为 `["coding", "dancing", "baking"]`
+
+   </details>
+
+<hr>
+
+### **2020/01/29**⌚️
+
+- 返回值是什么?
+
+  ```js
+  const firstPromise = new Promise((res, rej) => {
+    setTimeout(res, 500, "one");
+  });
+  
+  const secondPromise = new Promise((res, rej) => {
+    setTimeout(res, 100, "two");
+  });
+  
+  Promise.race([firstPromise, secondPromise]).then(res => console.log(res));
+  ```
+
+  - A: `"one"`
+  - B: `"two"`
+  - C: `"two" "one"`
+  - D: `"one" "two"`
+
+  <details >
+        <summary>点击</summary>
+
+  #### 答案: B
+
+  当我们向`Promise.race`方法中传入多个`Promise`时，会进行 *优先* 解析。在这个例子中，我们用`setTimeout`给`firstPromise`和`secondPromise`分别设定了500ms和100ms的定时器。这意味着`secondPromise`会首先解析出字符串`two`。那么此时`res`参数即为`two`，是为输出结果。
 
    </details>
 
