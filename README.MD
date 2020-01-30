@@ -1832,16 +1832,16 @@ define([], function () {
   方法 `language` 是一个 `setter`。Setters 并不保存一个实际值，它们的使命在于 *修改* 属性。当调用方法 `setter`， 返回 `undefined`。
 
 
-  ## 一、什么是getter和setter
+  #### 一、什么是getter和setter
 
   - getter 是一种获得属性值的方法，setter是一种设置属性值的方法
   - getter负责查询值，它不带任何参数，setter则负责设置键值，值是以参数的形式传递，在他的函数体中，一切的return都是无效的
   - get/set访问器不是对象的属性，而是属性的特性，特性只有内部才用，因此在javaScript中不能直接访问他们，为了表示特性是内部值用两队中括号括起来表示如[[Value]]
   - 对象的属性又可分为对象属性和访问器属性（参考资料： [https://www.cnblogs.com/absolute-child/p/7188417.html](https://www.cnblogs.com/lvmylife/p/%20https://www.cnblogs.com/absolute-child/p/7188417.html)）
 
-  ## 二、使用方式
+  #### 二、使用方式
 
-  ### 2.1 set/get
+  ##### 2.1 set/get
 
 
   ```
@@ -1858,7 +1858,7 @@ define([], function () {
   ```
 
 
-  ### 2.2 Object.defineProperty
+  ##### 2.2 Object.defineProperty
 
 
   ```
@@ -1957,6 +1957,40 @@ define([], function () {
   #### 答案: B
 
   当我们向`Promise.race`方法中传入多个`Promise`时，会进行 *优先* 解析。在这个例子中，我们用`setTimeout`给`firstPromise`和`secondPromise`分别设定了500ms和100ms的定时器。这意味着`secondPromise`会首先解析出字符串`two`。那么此时`res`参数即为`two`，是为输出结果。
+
+   </details>
+
+<hr>
+
+### **2020/01/30**⌚️
+
+- 输出什么？
+
+  ```js
+  function* generatorOne() {
+    yield ['a', 'b', 'c'];
+  }
+  
+  function* generatorTwo() {
+    yield* ['a', 'b', 'c'];
+  }
+  
+  const one = generatorOne()
+  const two = generatorTwo()
+  
+  console.log(one.next().value)
+  console.log(two.next().value)
+  ```
+
+  - A: `a` and `a`
+  - B: `a` and `undefined`
+  - C: `['a', 'b', 'c']` and `a`
+  - D: `a` and `['a', 'b', 'c']`
+
+  <details >
+        <summary>点击</summary>
+
+  答案: C通过 `yield` 关键字, 我们在 `Generator` 函数里执行`yield`表达式. 通过 `yield*` 关键字, 我们可以在一个`Generator` 函数里面执行（`yield`表达式）另一个 `Generator` 函数, 或可遍历的对象 (如数组).在函数 `generatorOne` 中, 我们通过 `yield` 关键字 yield 了一个完整的数组 `['a', 'b', 'c']`。函数`one`通过`next`方法返回的对象的`value` 属性的值 (`one.next().value`) 等价于数组 `['a', 'b', 'c']`.`console.log(one.next().value) // ['a', 'b', 'c'] console.log(one.next().value) // undefined`在函数 `generatorTwo` 中, 我们使用 `yield*` 关键字。就相当于函数`two`第一个`yield`的值, 等价于在迭代器中第一个 `yield` 的值。数组`['a', 'b', 'c']`就是这个迭代器. 第一个 `yield` 的值就是 `a`, 所以我们第一次调用 `two.next().value`时, 就返回`a`。`console.log(two.next().value) // 'a' console.log(two.next().value) // 'b' console.log(two.next().value) // 'c' console.log(two.next().value) // undefined` 
 
    </details>
 
