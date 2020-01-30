@@ -1990,7 +1990,25 @@ define([], function () {
   <details >
         <summary>点击</summary>
 
-  答案: C通过 `yield` 关键字, 我们在 `Generator` 函数里执行`yield`表达式. 通过 `yield*` 关键字, 我们可以在一个`Generator` 函数里面执行（`yield`表达式）另一个 `Generator` 函数, 或可遍历的对象 (如数组).在函数 `generatorOne` 中, 我们通过 `yield` 关键字 yield 了一个完整的数组 `['a', 'b', 'c']`。函数`one`通过`next`方法返回的对象的`value` 属性的值 (`one.next().value`) 等价于数组 `['a', 'b', 'c']`.`console.log(one.next().value) // ['a', 'b', 'c'] console.log(one.next().value) // undefined`在函数 `generatorTwo` 中, 我们使用 `yield*` 关键字。就相当于函数`two`第一个`yield`的值, 等价于在迭代器中第一个 `yield` 的值。数组`['a', 'b', 'c']`就是这个迭代器. 第一个 `yield` 的值就是 `a`, 所以我们第一次调用 `two.next().value`时, 就返回`a`。`console.log(two.next().value) // 'a' console.log(two.next().value) // 'b' console.log(two.next().value) // 'c' console.log(two.next().value) // undefined` 
+  #### 答案: C
+
+  通过 `yield` 关键字, 我们在 `Generator` 函数里执行`yield`表达式. 通过 `yield*` 关键字, 我们可以在一个`Generator` 函数里面执行（`yield`表达式）另一个 `Generator` 函数, 或可遍历的对象 (如数组).
+
+  在函数 `generatorOne` 中, 我们通过 `yield` 关键字 yield 了一个完整的数组 `['a', 'b', 'c']`。函数`one`通过`next`方法返回的对象的`value` 属性的值 (`one.next().value`) 等价于数组 `['a', 'b', 'c']`.
+
+  ```
+  console.log(one.next().value) // ['a', 'b', 'c']
+  console.log(one.next().value) // undefined
+  ```
+
+  在函数 `generatorTwo` 中, 我们使用 `yield*` 关键字。就相当于函数`two`第一个`yield`的值, 等价于在迭代器中第一个 `yield` 的值。数组`['a', 'b', 'c']`就是这个迭代器. 第一个 `yield` 的值就是 `a`, 所以我们第一次调用 `two.next().value`时, 就返回`a`。
+
+  ```
+  console.log(two.next().value) // 'a'
+  console.log(two.next().value) // 'b'
+  console.log(two.next().value) // 'c'
+  console.log(two.next().value) // undefined
+  ```
 
    </details>
 
