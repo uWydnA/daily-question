@@ -2013,3 +2013,39 @@ define([], function () {
    </details>
 
 <hr>
+
+### **2020/01/31**⌚️
+
+- 输出什么？
+
+  ```js
+  const colorConfig = {
+    red: true,
+    blue: false,
+    green: true,
+    black: true,
+    yellow: false,
+  }
+  
+  const colors = ["pink", "red", "blue"]
+  
+  console.log(colorConfig.colors[1])
+  ```
+
+  - A: `true`
+  - B: `false`
+  - C: `undefined`
+  - D: `TypeError`
+
+  <details >
+        <summary>点击</summary>答案: D
+
+  在JavaScript中，我们有两种访问对象属性的方法：括号表示法或点表示法。 在此示例中，我们使用点表示法（`colorConfig.colors`）代替括号表示法（`colorConfig [“ colors”]`）。
+
+  使用点表示法，JavaScript会尝试使用该确切名称在对象上查找属性。 在此示例中，JavaScript尝试在colorconfig对象上找到名为colors的属性。 没有名为“colors”的属性，因此返回“undefined”。 然后，我们尝试使用`[1]`访问第一个元素的值。 我们无法对未定义的值执行此操作，因此会抛出`Cannot read property '1' of undefined`。
+
+  JavaScript解释（或取消装箱）语句。 当我们使用方括号表示法时，它会看到第一个左方括号`[`并一直进行下去，直到找到右方括号`]`。 只有这样，它才会评估该语句。 如果我们使用了colorConfig [colors [1]]，它将返回colorConfig对象上red属性的值。
+
+   </details>
+
+<hr>
