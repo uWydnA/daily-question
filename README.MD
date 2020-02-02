@@ -2078,3 +2078,41 @@ define([], function () {
    </details>
 
 <hr>
+
+### **2020/02/02**⌚️
+
+- 输出什么？
+
+  ```js
+  const name = "Lydia Hallie";
+  const age = 21;
+  
+  console.log(Number.isNaN(name));
+  console.log(Number.isNaN(age));
+  
+  console.log(isNaN(name));
+  console.log(isNaN(age));
+  ```
+
+  - A: `true` `false` `true` `false`
+  - B: `true` `false` `false` `false`
+  - C: `false` `false` `true` `false`
+  - D: `false` `true` `false` `true`
+
+  <details >
+        <summary>点击</summary>
+  答案: C
+
+  通过方法 `Number.isNaN`，你可以检测你传递的值是否为 *数字值* 并且是否等价于 `NaN`。`name` 不是一个数字值，因此 `Number.isNaN(name)` 返回 `false`。`age` 是一个数字值，但它不等价于 `NaN`，因此 `Number.isNaN(age)` 返回 `false`.
+
+  通过方法 `isNaN`， 你可以检测你传递的值是否一个 number。`name` 不是一个 `number`，因此 `isNaN(name)` 返回 `true`. `age` 是一个 `number` 因此 `isNaN(age)` 返回 `false`.
+
+  ### 令人费解的怪异行为
+
+  如果`isNaN`函数的参数不是`Number`类型， `isNaN`函数会首先尝试将这个参数转换为数值，然后才会对转换后的结果是否是[`NaN`](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/NaN)进行判断。因此，对于能被强制转换为有效的非NaN数值来说（空字符串和布尔值分别会被强制转换为数值0和1），返回`false`值也许会让人感觉莫名其妙。比如说，空字符串就明显“不是数值（not a number）”。这种怪异行为起源于："不是数值（not a number）"在基于IEEE-754数值的浮点计算体制中代表了一种特定的含义。`isNaN`函数其实等同于回答了这样一个问题：被测试的值在被强制转换成数值时会不会返回IEEE-754中所谓的“不是数值（not a number）”。
+
+  
+
+   </details>
+
+<hr>
