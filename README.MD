@@ -2116,3 +2116,54 @@ define([], function () {
    </details>
 
 <hr>
+
+### **2020/02/03**⌚️
+
+- 输出什么？
+
+  ```js
+  const add = () => {
+    const cache = {};
+    return num => {
+      if (num in cache) {
+        return `From cache! ${cache[num]}`;
+      } else {
+        const result = num + 10;
+        cache[num] = result;
+        return `Calculated! ${result}`;
+      }
+    };
+  };
+  
+  const addFunction = add();
+  console.log(addFunction(10));
+  console.log(addFunction(10));
+  console.log(addFunction(5 * 2));
+  ```
+
+  - A: `Calculated! 20` `Calculated! 20` `Calculated! 20`
+  - B: `Calculated! 20` `From cache! 20` `Calculated! 20`
+  - C: `Calculated! 20` `From cache! 20` `From cache! 20`
+  - D: `Calculated! 20` `From cache! 20` `Error`
+
+  <details >
+        <summary>点击</summary>
+  答案: C
+
+  `add`函数是一个记忆函数。 通过记忆化，我们可以缓存函数的结果，以加快其执行速度。上述情况，我们创建一个`cache`对象，用于存储先前返回过的值。
+
+  如果我们使用相同的参数多次调用`addFunction`函数，它首先检查缓存中是否已有该值，如果有，则返回缓存值，这将节省执行时间。如果没有，那么它将计算该值，并存储在缓存中。
+
+  我们用相同的值三次调用了`addFunction`函数：
+
+  在第一次调用，`num`等于`10`时函数的值尚未缓存，if语句`num in cache`返回`false`，else块的代码被执行：`Calculated! 20`，并且其结果被添加到缓存对象，`cache`现在看起来像`{10：20}`。
+
+  第二次，`cache`对象包含`10`的返回值。 if语句 `num in cache` 返回`true`，`From cache! 20`被打印。
+
+  第三次，我们将`5 * 2`(值为10)传递给函数。 `cache`对象包含`10`的返回值。 if语句 `num in cache` 返回`true`，`From cache! 20`被打印。
+
+  
+
+   </details>
+
+<hr>
