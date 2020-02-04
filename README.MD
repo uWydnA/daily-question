@@ -2167,3 +2167,34 @@ define([], function () {
    </details>
 
 <hr>
+
+### **2020/02/04**⌚️
+
+- 输出什么？
+
+  ```js
+  const add = x => y => z => {
+  	console.log(x, y, z);
+  	return x + y + z;
+  };
+  
+  add(4)(5)(6);
+  ```
+  
+  - A: `4` `5` `6`
+  - B: `6` `5` `4`
+  - C: `4` `function` `function`
+  - D: `undefined` `undefined` `6`
+  
+  <details >
+        <summary>点击</summary>
+
+#### 答案: A
+
+函数 `add` 是一个返回 返回箭头函数的箭头函数 的箭头函数（still with me?）。第一个函数接收一个值为 `4` 的参数 `x`。我们调用第二个函数，它接收一个值为 `5` 的参数 `y`。然后我们调用第三个函数，它接收一个值为 `6` 的参数 `z`。当我们尝试在最后一个箭头函数中获取 `x`, `y` 和 `z` 的值，JS 引擎根据作用域链去找 `x` 和 `y` 的值。得到 `4` `5` `6`.
+
+  
+
+   </details>
+
+  <hr>
