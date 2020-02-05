@@ -2197,3 +2197,44 @@ define([], function () {
  </details>
 
 <hr>
+
+### **2020/02/05**⌚️
+
+- 输出什么？
+
+  ```js
+  class Person {
+    constructor(name) {
+      this.name = name
+    }
+  }
+  
+  const member = new Person("John")
+  console.log(typeof member)
+  ```
+
+  - A: `"class"`
+  - B: `"function"`
+  - C: `"object"`
+  - D: `"string"`
+
+  <details >
+        <summary>点击</summary>
+        答案: C
+
+  
+
+  类是构造函数的语法糖，如果用构造函数的方式来重写`Person`类则将是：
+
+  ```
+  function Person() {
+    this.name = name
+  }
+  ```
+
+  通过`new`来调用构造函数，将会生成构造函数`Person`的实例，对实例执行`typeof`关键字将返回`"object"`，上述情况打印出`"object"`。
+
+ </details>
+
+<hr>
+
