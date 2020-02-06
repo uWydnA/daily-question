@@ -2239,7 +2239,7 @@ define([], function () {
 <hr>
 ### **2020/02/06**⌚️
 
-- 输出什么？
+- 输出什么?
 
   ```js
   let name = 'Lydia'
