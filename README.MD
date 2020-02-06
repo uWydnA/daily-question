@@ -2237,9 +2237,10 @@ define([], function () {
  </details>
 
 <hr>
+
 ### **2020/02/06**⌚️
 
-- 输出什么?
+- 输出什么？
 
   ```js
   let name = 'Lydia'
@@ -2252,23 +2253,25 @@ define([], function () {
   getName()
   ```
 
-  - A: `"class"`
-  - B: `"function"`
-  - C: `"object"`
-  - D: `"string"`
+  - A: Lydia
+  - B: Sarah
+  - C: `undefined`
+  - D: `ReferenceError`
 
   <details >
         <summary>点击</summary>
         答案: D
 
+  
+
   每个函数都有其自己的执行上下文。 `getName`函数首先在其自身的上下文（范围）内查找，以查看其是否包含我们尝试访问的变量`name`。 上述情况，`getName`函数包含其自己的`name`变量：我们用`let`关键字和`Sarah`的值声明变量`name`。
 
   带有`let`关键字（和`const`）的变量被提升，但是与`var`不同，它不会被***初始化***。 在我们声明（初始化）它们之前，无法访问它们。 这称为“暂时性死区”。 当我们尝试在声明变量之前访问变量时，JavaScript会抛出`ReferenceError: Cannot access 'name' before initialization`。
-
+  
   如果我们不在`getName`函数中声明`name`变量，则javascript引擎会查看原型练。会找到其外部作用域有一个名为`name`的变量，其值为`Lydia`。 在这种情况下，它将打印`Lydia`：
-
+  
   ```
-  let name = 'Lydia'
+let name = 'Lydia'
   
   function getName() {
     console.log(name)
@@ -2280,4 +2283,3 @@ define([], function () {
  </details>
 
 <hr>
-
