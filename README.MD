@@ -2311,7 +2311,7 @@ define([], function () {
 
 <hr>
 
-### **2020/02/07**⌚️
+### **2020/02/08**⌚️
 
 - 输出什么？
 
@@ -2346,6 +2346,48 @@ define([], function () {
   通过`throw`语句，我么可以创建自定义错误。 而通过它，我们可以抛出异常。异常可以是一个**字符串**, 一个 **数字**, 一个 **布尔类型** 或者是一个 **对象**。在本例中，我们的异常是字符串`'Hello world'`.
 
   通过 `catch`语句，我们可以设定当`try`语句块中抛出异常后应该做什么处理。在本例中抛出的异常是字符串`'Hello world'`. `e`就是这个字符串，因此被输出。最终结果就是`'Oh an error: Hello world'`.
+
+  
+
+ </details>
+
+<hr>
+
+### **2020/02/08**⌚️
+
+- 输出什么？
+
+  ```js
+  class Counter {
+    #number = 10
+  
+    increment() {
+      this.#number++
+    }
+  
+    getNum() {
+      return this.#number
+    }
+  }
+  
+  const counter = new Counter()
+  counter.increment()
+  
+  console.log(counter.#number)
+  ```
+
+  - A: `10`
+  - B: `11`
+  - C: `undefined`
+  - D: `SyntaxError`
+
+  <details >
+        <summary>点击</summary>
+        答案: D
+
+  
+
+  在 ES2020 中，通过 `#` 我们可以给 class 添加私有变量。在 class 的外部我们无法获取该值。当我们尝试输出 `counter.#number`，语法错误被抛出：我们无法在 class `Counter` 外部获取它!
 
   
 
