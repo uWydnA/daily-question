@@ -2394,3 +2394,81 @@ define([], function () {
  </details>
 
 <hr>
+
+### **2020/02/09**⌚️
+
+- 如何用Vue点击变色功能的实现
+
+  <details >
+        <summary>点击</summary>
+
+  
+
+  ```js
+  <!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>vue点击变色功能的实现</title>
+      <style>
+          .red {
+              background-color: #f99;
+          }
+      </style>
+      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  
+  <body>
+      <div id="box">
+          <ul>
+              <li :class="index==iNow1?'red':''" v-for='(anyData,index) in arr1' @click='fn(index)'>{{anyData}}</li>
+          </ul>
+          <input type="text" v-model="mytext">
+          <button @click='add()'>add</button>
+          <ul>
+              <li v-for="(anyData,index) in arr2" v-bind:class="index == iNow?'red':''" @click=addColor(index)>
+                  {{anyData}} ---- <button @click='del(index)'>del</button>
+              </li>
+          </ul>
+      </div>
+  </body>
+  <script>
+      var vm = new Vue({
+          el: '#box',
+          data: {
+              arr1: ['正在热映', '即将上映'],
+              arr2: [1, 2, 3, 4, 5, 6, 7],
+              color: false,
+              mytext: '',
+              iNow:0,
+              iNow1:0
+          },
+          methods: {
+              fn(index){
+                  this.iNow1 = index;
+              },
+              addColor(index) {
+                  this.iNow = index;
+              },
+              add() {
+                  this.arr2.push(this.mytext)
+              },
+              del(index) {
+                  this.arr2.splice(index, 1);
+              }
+          }
+      })
+  </script>
+  
+  </html>
+  ```
+
+  
+
+  
+
+ </details>
+
+<hr>
