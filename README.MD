@@ -2353,7 +2353,7 @@ define([], function () {
 
 <hr>
 
-### **2020/02/08**⌚️
+### **2020/02/09**⌚️
 
 - 输出什么？
 
@@ -2395,7 +2395,7 @@ define([], function () {
 
 <hr>
 
-### **2020/02/09**⌚️
+### **2020/02/10**⌚️
 
 - 如何用Vue点击变色功能的实现
 
@@ -2472,3 +2472,42 @@ define([], function () {
  </details>
 
 <hr>
+
+### **2020/02/11**⌚️
+
+- 请使用Vue完成模糊搜索
+
+  <details >
+        <summary>点击</summary>
+
+  ```html
+  <div id='box'>
+  	<input @input='change' v-model='mytxt'>
+      <ul>
+          <li v-for='data in arr'></li>
+      </ul>
+  </div>
+  ```
+
+  ```js
+  let vm = new Vue({
+      el:'#box',
+      data:{
+          mytxt:'',
+          arr:['aaa','aac','bbb','abc','bbc','ccc','cca','cac'],
+          oldarr:['aaa','aac','bbb','abc','bbc','ccc','cca','cac']
+      },
+      methods:{
+          change(){
+              this.arr = 	this.oldarr.filter(
+                  val=>val.indexOf(this.mytxt) > -1);
+          }
+      }
+  })
+  ```
+
+  
+
+   </details>
+
+  <hr>
