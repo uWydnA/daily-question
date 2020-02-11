@@ -2510,4 +2510,4 @@ define([], function () {
 
    </details>
 
-  <hr>
+<hr>
