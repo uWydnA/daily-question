@@ -2511,3 +2511,40 @@ define([], function () {
    </details>
 
 <hr>
+
+### **2020/02/12**⌚️
+
+- 请使用Vue的计算属性完成模糊搜索
+
+  <details >
+        <summary>点击</summary>
+
+  ```html
+  <div id='box'>
+  	<input @input='change' v-model='mytxt'>
+      <ul>
+          <li v-for='data in change'></li>
+      </ul>
+  </div>
+  ```
+
+  ```js
+  let vm = new Vue({
+      el:'#box',
+      data:{
+          mytxt:'',
+          arr:['aaa','aac','bbb','abc','bbc','ccc','cca','cac'],
+      },
+     	computed:{
+          change(){
+              return this.arr.filter(val=>val.includes(this.mytxt))
+          }
+      }
+  })
+  ```
+  
+  
+
+   </details>
+
+<hr>
