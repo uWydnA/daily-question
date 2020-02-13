@@ -2548,3 +2548,26 @@ define([], function () {
    </details>
 
 <hr>
+
+### **2020/02/13**⌚️
+
+- 如何使用fetch的post方式
+
+  <details >
+        <summary>点击</summary>
+
+  ```js
+fetch('http://...',{
+    method:'post',
+    headers:{
+        'Content-Type':'application/x-www-forn-urlencoded'
+    },
+    body:'name=retr0&age=1'
+}).then(res=>res.json()).then(res=>{
+    console.log(res)
+})
+  ```
+
+  
+
+   </details>
