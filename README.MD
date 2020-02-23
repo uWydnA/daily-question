@@ -2604,3 +2604,27 @@ fetch('http://...',{
    </details>
 
 <hr>
+
+### **2020/02/15**⌚️
+
+- 如何使用vue-router
+
+  <details >
+        <summary>点击</summary>
+
+  在router文件夹中引入并定义路径
+
+  ```
+  import Film from '@/views/Film.vue'
+  ```
+
+  ```js
+  {
+      path:'/films',
+      component:Film
+  }
+  ```
+
+   </details>
+
+<hr>
