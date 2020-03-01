@@ -1886,7 +1886,7 @@ define([], function () {
 
 ### **2020/01/28**⌚️
 
-- 输出是什么？
+- 输出是什么
 
   ```js
   const person = {
@@ -2627,4 +2627,4 @@ fetch('http://...',{
 
    </details>
 
-<hr>
+<hr>ou
